@@ -1,0 +1,3 @@
+# remove environment variable files
+config/*
+node_modules
