@@ -5,11 +5,7 @@ const app = express();
 app.use(express.json({ extend: false }));
 
 // Define Routes
-//app.use("/route", require("./routes/routes"));
-
-app.get("/", (req, res) => {
-	return res.send("Response from API");
-});
+app.use("/auth", require("./routes/auth"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
