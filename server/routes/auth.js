@@ -1,46 +1,10 @@
-<<<<<<< HEAD
 const config = require("config");
 const express = require("express");
 const router = express.Router();
-=======
-const FormData = require("form-data");
-const config = require("config");
-const request = require("request");
-const express = require("express");
-const router = express.Router();
-const randomStringGenerator = require("../util/randomStringGenerator");
->>>>>>> 2b7ef4c4155074ad28294ff5dccbc6f089c8c67a
 const { default: axios } = require("axios");
 
 const client_id = config.get("SPOTIFY_CLIENT_ID");
 const client_secret = config.get("SPOTIFY_CLIENT_SECRET");
-<<<<<<< HEAD
-=======
-const state_key = randomStringGenerator(15);
-const redirect_uri =
-	config.get("ENV") === "DEV"
-		? "http://localhost:5000/auth/callback"
-		: "https://myspotifystats/auth/callback";
-
-router.get("/login", (req, res) => {
-	const scope = "user-read-private user-read-email";
-
-	const main_url = "https://accounts.spotify.com/authorize";
-
-	const req_url =
-		main_url +
-		"?" +
-		new URLSearchParams({
-			response_type: "code",
-			client_id,
-			scope,
-			redirect_uri,
-			state: state_key,
-		}).toString();
-
-	return res.redirect(req_url);
-});
->>>>>>> 2b7ef4c4155074ad28294ff5dccbc6f089c8c67a
 
 router.get("/token", async (req, res) => {
 	const { code, state } = req.query;
@@ -68,11 +32,7 @@ router.get("/token", async (req, res) => {
 
 	try {
 		const response = await axios(options);
-<<<<<<< HEAD
 		const token = response.data.access_token;
-=======
-		token = response.data.access_token;
->>>>>>> 2b7ef4c4155074ad28294ff5dccbc6f089c8c67a
 		return res.status(200).json({ token });
 	} catch (error) {
 		return res.status(500).json({ error: "Internal Server Error" });
