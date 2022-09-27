@@ -33,16 +33,16 @@ router.get("/login", (req, res) => {
 	return res.redirect(req_url);
 });
 
-router.get("/callback", async (req, res) => {
+router.get("/token", async (req, res) => {
 	const { code, state } = req.query;
 
-	if (state === null || state !== state_key) {
-		return res.status(500).json({ error: "State Mismatch" });
-	}
+	// if (state === null || state !== state_key) {
+	// 	return res.status(500).json({ error: "State Mismatch" });
+	// }
 
 	const data = new URLSearchParams();
 	data.append("grant_type", "client_credentials");
-	data.append("redirect_uri", redirect_uri);
+	data.append("redirect_uri", "http://localhost:3000/");
 	data.append("code", code);
 
 	let options = {
