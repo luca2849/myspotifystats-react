@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
 		if (current_unix_time - created_at > 3590) {
 			return res.status(400).json({ error: "Token expired." });
 		}
+		req.token = req.headers["x-auth-token"];
 		next();
 	} catch (error) {
 		return res.status(401).json({ error: "Token expired." });
