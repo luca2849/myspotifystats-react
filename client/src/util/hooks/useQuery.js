@@ -1,3 +1,4 @@
+// hook for accessing URL query parameters
 import React from "react";
 import { useLocation } from "react-router-dom";
 
