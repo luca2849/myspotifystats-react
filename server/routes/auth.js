@@ -2,6 +2,7 @@ const config = require("config");
 const express = require("express");
 const router = express.Router();
 const { default: axios } = require("axios");
+const { refreshToken } = require("../util/refreshToken");
 
 const client_id = config.get("SPOTIFY_CLIENT_ID");
 const client_secret = config.get("SPOTIFY_CLIENT_SECRET");
@@ -35,6 +36,20 @@ router.get("/token", async (req, res) => {
 		const token = response.data.access_token;
 		return res.status(200).json({ token });
 	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal Server Error" });
+	}
+});
+
+router.get("/token/refresh", async (req, res) => {
+	const { refresh } = req.query;
+	if (!refresh)
+		return res.status(400).json({ error: "No refresh token provided" });
+	try {
+		const access_token = await refreshToken(refresh);
+		return res.status(200).json({ access_token });
+	} catch (error) {
+		console.error(error);
 		return res.status(500).json({ error: "Internal Server Error" });
 	}
 });
