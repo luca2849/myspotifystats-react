@@ -1,6 +1,7 @@
 module.exports = (req, res, next) => {
+	console.log(req.headers);
 	// Get JWT token from header
-	const created_at = req.header("token-created");
+	const created_at = req.headers["created-at"];
 	// check if no created time
 	if (!created_at) {
 		return res.status(401).json({ error: "No time provided" });
