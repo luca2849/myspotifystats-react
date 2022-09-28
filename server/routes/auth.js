@@ -14,9 +14,10 @@ router.get("/token", async (req, res) => {
 	// 	return res.status(500).json({ error: "State Mismatch" });
 	// }
 
+	if (!code) return res.status(400).json({ error: "Missing code parameter" });
 	const data = new URLSearchParams();
-	data.append("grant_type", "client_credentials");
-	data.append("redirect_uri", "http://localhost:3000/");
+	data.append("grant_type", "authorization_code");
+	data.append("redirect_uri", "http://localhost:3000/login/callback");
 	data.append("code", code);
 
 	let options = {
@@ -33,8 +34,13 @@ router.get("/token", async (req, res) => {
 
 	try {
 		const response = await axios(options);
-		const token = response.data.access_token;
-		return res.status(200).json({ token });
+		const current_unix_time = Math.floor(new Date().getTime() / 1000);
+		const { access_token, refresh_token } = response.data;
+		return res.status(200).json({
+			access_token,
+			refresh_token,
+			created_at: current_unix_time,
+		});
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ error: "Internal Server Error" });

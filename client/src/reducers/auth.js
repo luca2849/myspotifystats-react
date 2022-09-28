@@ -7,11 +7,14 @@ const initialState = {
 	user: null,
 };
 
-export default (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case LOGIN_SUCCESS:
-			localStorage.setItem("token", payload.token);
+			// set access, refresh tokens, and when the tokens were created
+			for (const property in payload) {
+				localStorage.setItem(property, payload[property]);
+			}
 			return {
 				...state,
 				...payload,
@@ -32,3 +35,5 @@ export default (state = initialState, action) => {
 			return state;
 	}
 };
+
+export default authReducer;
