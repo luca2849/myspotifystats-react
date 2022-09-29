@@ -1,25 +1,32 @@
 const axios = require("axios");
 const config = require("config");
 
+/*
+ * Function for refreshing access token
+ *
+ * @param  {String}   refresh  Refresh token provided by Spotify on login
+ *
+ * @return {String}            New access token
+ */
 const refreshToken = async (refresh) => {
 	if (!refresh) return null;
 	try {
 		const url = "https://accounts.spotify.com/api/token";
-		const data = new URLSearchParams();
-		data.append("refresh_token", refresh);
-		data.append("grant_type", "refresh_token");
-		data.append("client_id", config.get("SPOTIFY_CLIENT_ID"));
-		data.append("client_secret", config.get("SPOTIFY_CLIENT_SECRET"));
-
-		let options = {
+		const headers = {
+			"Content-Type": "application/x-www-form-urlencoded",
+		};
+		const data = new URLSearchParams({
+			client_id: config.get("SPOTIFY_CLIENT_ID"),
+			client_secret: config.get("SPOTIFY_CLIENT_SECRET"),
+			grant_type: "refresh_token",
+			refresh_token: refresh,
+		});
+		const response = await axios({
 			url,
 			method: "POST",
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-			},
+			headers: headers,
 			data: data,
-		};
-		const response = await axios(options);
+		});
 		return response.data.access_token;
 	} catch (error) {
 		console.error(error);

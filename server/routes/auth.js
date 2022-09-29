@@ -34,12 +34,12 @@ router.get("/token", async (req, res) => {
 
 	try {
 		const response = await axios(options);
-		const current_unix_time = Math.floor(new Date().getTime() / 1000);
+		const created_at = Math.floor(new Date().getTime() / 1000);
 		const { access_token, refresh_token } = response.data;
 		return res.status(200).json({
 			access_token,
 			refresh_token,
-			created_at: current_unix_time,
+			created_at,
 		});
 	} catch (error) {
 		console.error(error);
@@ -53,7 +53,8 @@ router.get("/token/refresh", async (req, res) => {
 		return res.status(400).json({ error: "No refresh token provided" });
 	try {
 		const access_token = await refreshToken(refresh);
-		return res.status(200).json({ access_token });
+		const created_at = Math.floor(new Date().getTime() / 1000);
+		return res.status(200).json({ access_token, created_at });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ error: "Internal Server Error" });

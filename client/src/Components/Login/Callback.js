@@ -10,9 +10,7 @@ const Callback = ({ generateToken }) => {
 	useEffect(() => {
 		// with this code from the spotify API,
 		// query local API for access token from spotify
-		if (!code) {
-			return;
-		}
+		if (!code) return;
 		generateToken({ code });
 	}, [code, generateToken]);
 	return <Navigate to="/" state={{ from: useLocation() }} replace />;
