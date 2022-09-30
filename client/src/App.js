@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Callback from "./Components/Login/Callback";
 import Login from "./Components/Login/Login";
-import Home from "./Pages/Home";
-import Profile from "./Pages/Profile";
+import Home from "./Pages/Home/Home";
+import Profile from "./Pages/Profile/Profile";
 import checkToken from "./util/checkToken";
 import { setHeaders } from "./util/setHeaders";
 import { refreshToken } from "./actions/auth";
+import TopNav from "./Components/Navigation/TopNav";
 
 // Check token is in headers (prevents de-auth on refresh)
 const { access_token, created_at } = localStorage;
@@ -23,9 +24,9 @@ function App({ refreshToken }) {
 	}, [refreshToken]);
 	return (
 		<div className="App">
-			<h1>MySpotifyStats</h1>
 			{tokenSafe && (
 				<Router>
+					<TopNav />
 					<Routes>
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/login" element={<Login />} />

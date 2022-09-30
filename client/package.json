@@ -52,7 +52,8 @@
 		]
 	},
 	"devDependencies": {
-		"redux-devtools-extension": "^2.13.9"
+		"redux-devtools-extension": "^2.13.9",
+		"sass": "^1.55.0"
 	},
 	"proxy": "http://localhost:5000"
 }
