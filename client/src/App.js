@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import store from "./store";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Callback from "./Components/Login/Callback";
 import Login from "./Components/Login/Login";
@@ -7,7 +8,7 @@ import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
 import checkToken from "./util/checkToken";
 import { setHeaders } from "./util/setHeaders";
-import { refreshToken } from "./actions/auth";
+import { loadUser, refreshToken } from "./actions/auth";
 import TopNav from "./Components/Navigation/TopNav";
 
 // Check token is in headers (prevents de-auth on refresh)
@@ -21,6 +22,8 @@ function App({ refreshToken }) {
 		// Call to check and replace
 		// token if necessary
 		checkToken(refreshToken, setTokenSafe);
+		// ensure user is loaded into state
+		store.dispatch(loadUser());
 	}, [refreshToken]);
 	return (
 		<div className="App">
