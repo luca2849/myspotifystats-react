@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Callback from "./Components/Login/Callback";
-import Login from "./Components/Login/Login";
+import Callback from "./Components/Authentication/Callback";
+import Login from "./Components/Authentication/Login";
+import Logout from "./Components/Authentication/Logout";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
 import checkToken from "./util/checkToken";
@@ -23,7 +24,7 @@ function App({ refreshToken }) {
 		// token if necessary
 		checkToken(refreshToken, setTokenSafe);
 		// ensure user is loaded into state
-		store.dispatch(loadUser());
+		if (localStorage.getItem("access_token")) store.dispatch(loadUser());
 	}, [refreshToken]);
 	return (
 		<div className="App">
@@ -34,7 +35,7 @@ function App({ refreshToken }) {
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/login" element={<Login />} />
 						<Route exact path="/profile" element={<Profile />} />
-
+						<Route exact path="/logout" element={<Logout />} />
 						<Route
 							exact
 							path="/login/callback"
