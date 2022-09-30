@@ -1,7 +1,12 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR } from "../actions/types";
+import {
+	LOGIN_SUCCESS,
+	LOGIN_FAIL,
+	USER_LOADED,
+	AUTH_ERROR,
+} from "../actions/types";
 
 const initialState = {
-	token: localStorage.getItem("token"),
+	token: localStorage.getItem("access_token"),
 	isAuthenticated: false,
 	loading: true,
 	user: null,
@@ -17,7 +22,7 @@ const authReducer = (state = initialState, action) => {
 			}
 			return {
 				...state,
-				...payload,
+				token: payload.access_token,
 				isAuthenticated: true,
 				loading: false,
 			};
@@ -30,6 +35,13 @@ const authReducer = (state = initialState, action) => {
 				isAuthenticated: false,
 				loading: false,
 				user: null,
+			};
+		case USER_LOADED:
+			return {
+				...state,
+				isAuthenticated: true,
+				loading: false,
+				user: payload,
 			};
 		default:
 			return state;

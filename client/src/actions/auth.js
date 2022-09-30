@@ -1,6 +1,16 @@
 import axios from "axios";
-import { AUTH_ERROR, LOGIN_SUCCESS } from "./types";
+import { AUTH_ERROR, LOGIN_SUCCESS, USER_LOADED } from "./types";
 import { setHeaders } from "../util/setHeaders";
+
+export const loadUser = () => async (dispatch) => {
+	try {
+		const res = await axios.get(`/api/user/me`);
+		dispatch({ type: USER_LOADED, payload: res.data });
+	} catch (error) {
+		console.error(error);
+		dispatch({ type: AUTH_ERROR });
+	}
+};
 
 // Get access token from API
 export const generateToken = (data) => async (dispatch) => {
@@ -9,6 +19,7 @@ export const generateToken = (data) => async (dispatch) => {
 		const res = await axios.get(`/api/auth/token?code=${code}`);
 		setHeaders(res.data.access_token, res.data.created_at);
 		dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+		dispatch(loadUser());
 	} catch (error) {
 		console.error(error);
 		dispatch({ type: AUTH_ERROR });
