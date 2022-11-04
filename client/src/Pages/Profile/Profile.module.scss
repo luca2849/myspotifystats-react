@@ -1,3 +1,5 @@
+@use "../../util/styles/colours" as *;
+
 .pageContainer {
 	min-height: 100vh;
 }
@@ -5,9 +7,12 @@
 .topSection {
 	height: 20vh;
 	background: #555;
+	background: radial-gradient(rgba(29, 185, 84, 0.2) 10%, transparent 8%);
+	background-size: 5vmin 5vmin;
 	color: white;
 	display: flex;
 	align-items: center;
+	position: relative;
 	& .moreInfo {
 		& h1,
 		h4 {

@@ -1,0 +1,6 @@
+@use "../../util/styles/sizes" as *;
+
+.container {
+	width: 100%;
+	margin-left: $sidebar;
+}

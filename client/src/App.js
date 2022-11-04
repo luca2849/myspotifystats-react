@@ -7,10 +7,11 @@ import Login from "./Components/Authentication/Login";
 import Logout from "./Components/Authentication/Logout";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
+import AppContainer from "./Components/AppContainer/AppContainer";
 import checkToken from "./util/checkToken";
 import { setHeaders } from "./util/setHeaders";
 import { loadUser, refreshToken } from "./actions/auth";
-import TopNav from "./Components/Navigation/TopNav";
+import SideNav from "./Components/Navigation/SideNav";
 
 // Check token is in headers (prevents de-auth on refresh)
 const { access_token, created_at } = localStorage;
@@ -30,18 +31,24 @@ function App({ refreshToken }) {
 		<div className="App">
 			{tokenSafe && (
 				<Router>
-					<TopNav />
-					<Routes>
-						<Route exact path="/" element={<Home />} />
-						<Route exact path="/login" element={<Login />} />
-						<Route exact path="/profile" element={<Profile />} />
-						<Route exact path="/logout" element={<Logout />} />
-						<Route
-							exact
-							path="/login/callback"
-							element={<Callback />}
-						/>
-					</Routes>
+					<SideNav />
+					<AppContainer>
+						<Routes>
+							<Route exact path="/" element={<Home />} />
+							<Route exact path="/login" element={<Login />} />
+							<Route
+								exact
+								path="/profile"
+								element={<Profile />}
+							/>
+							<Route exact path="/logout" element={<Logout />} />
+							<Route
+								exact
+								path="/login/callback"
+								element={<Callback />}
+							/>
+						</Routes>
+					</AppContainer>
 				</Router>
 			)}
 		</div>

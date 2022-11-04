@@ -1,6 +1,7 @@
 import axios from "axios";
 import { AUTH_ERROR, LOGIN_SUCCESS, LOGOUT, USER_LOADED } from "./types";
 import { setHeaders } from "../util/setHeaders";
+import store from "../store";
 
 /*
  * Loads the user into the auth state
@@ -9,8 +10,12 @@ import { setHeaders } from "../util/setHeaders";
  */
 export const loadUser = () => async (dispatch) => {
 	try {
-		const res = await axios.get(`/api/user/me`);
-		dispatch({ type: USER_LOADED, payload: res.data });
+		// check if user already loaded (no need to fetch again)
+		const state = store.getState();
+		if (!state.auth.user) {
+			const res = await axios.get(`/api/user/me`);
+			dispatch({ type: USER_LOADED, payload: res.data });
+		}
 	} catch (error) {
 		console.error(error);
 		dispatch({ type: AUTH_ERROR });
