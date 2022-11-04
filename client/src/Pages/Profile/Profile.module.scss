@@ -1,0 +1,53 @@
+@use "../../util/styles/colours" as *;
+
+.pageContainer {
+	min-height: 100vh;
+}
+
+.topSection {
+	height: 20vh;
+	background: #555;
+	background: radial-gradient(rgba(29, 185, 84, 0.2) 10%, transparent 8%);
+	background-size: 5vmin 5vmin;
+	color: white;
+	display: flex;
+	align-items: center;
+	position: relative;
+	& .moreInfo {
+		& h1,
+		h4 {
+			font-weight: 500;
+			letter-spacing: 2px;
+			margin: 0;
+		}
+		& h1 {
+			font-size: 250%;
+		}
+		& h4 {
+			font-size: 90%;
+			font-weight: 300;
+		}
+		& span {
+			margin: 0 0.75rem;
+		}
+		& .infoHeader {
+			display: flex;
+			align-items: center;
+			& > * {
+				display: flex;
+				align-items: center;
+			}
+			& img {
+				height: 15px;
+				margin-right: 10px;
+			}
+		}
+	}
+	& .profileImage {
+		& > img {
+			border-radius: 50%;
+			height: 15vh;
+			margin: 1.5rem;
+		}
+	}
+}
