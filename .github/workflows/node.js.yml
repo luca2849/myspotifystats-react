@@ -24,4 +24,4 @@ jobs:
           cd ./client
           ls -la
           npm ci
-          npm run-script build:qa
+          npm run-script build
