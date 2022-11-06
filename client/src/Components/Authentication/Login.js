@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 // page for functionality of authenticating with spotify via the API
 
 const Login = () => {
