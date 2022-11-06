@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 // page for functionality of authenticating with spotify via the API
 
 const Login = () => {
-	const loc = useLocation();
 	// setup spotify authentication url
 	const scope = "user-read-private user-read-email";
 	const params = new URLSearchParams({
