@@ -17,9 +17,13 @@ router.get("/token", async (req, res) => {
 	if (!code) return res.status(400).json({ error: "Missing code parameter" });
 	const data = new URLSearchParams();
 	data.append("grant_type", "authorization_code");
-	data.append("redirect_uri", "http://localhost:3000/login/callback");
+	data.append(
+		"redirect_uri",
+		`${req.protocol}://${
+			config.get("ENV") === "PROD" ? req.get("host") : "localhost:3000"
+		}/login/callback`
+	);
 	data.append("code", code);
-
 	let options = {
 		url: "https://accounts.spotify.com/api/token",
 		method: "POST",
