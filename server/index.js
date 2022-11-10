@@ -9,6 +9,7 @@ app.use(express.json({ extend: false }));
 // Define Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/user"));
+app.use("/api/app", require("./routes/app"));
 
 // Route for built client routes
 app.use(express.static("../client/build"));
