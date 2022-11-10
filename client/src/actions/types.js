@@ -8,3 +8,7 @@ export const LOGOUT = "LOGOUT";
 // USER
 export const USER_SUCCESS = "USER_SUCCESS";
 export const USER_ERROR = "USER_ERROR";
+
+// APP
+export const TOP_RECEIVED = "TOP_RECEIVED";
+export const ERROR = "ERROR";
