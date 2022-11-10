@@ -3,7 +3,7 @@ import React from "react";
 
 const Login = () => {
 	// setup spotify authentication url
-	const scope = "user-read-private user-read-email";
+	const scope = "user-read-private user-read-email user-top-read";
 	const params = new URLSearchParams({
 		response_type: "code",
 		client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
