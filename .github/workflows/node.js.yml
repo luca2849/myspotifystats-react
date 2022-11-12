@@ -4,25 +4,24 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ "release" ]
-  pull_request:
-    branches: [ "release" ]
+    push:
+        branches: ["release"]
+    pull_request:
+        branches: ["release"]
 
 jobs:
-  deployment-steps:
-    name: Client Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install Dependencies and Build React App
-        run: |
-          pwd
-          cd ./client
-          ls -la
-          npm ci
-          npm run-script build
+    deployment-steps:
+        name: Client Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+            - name: Install Dependencies and Build React App
+              run: |
+                  pwd
+                  ls -la
+                  npm ci
+                  npm run-script build
