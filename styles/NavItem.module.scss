@@ -1,0 +1,73 @@
+@use "../util/styles/colours" as *;
+@use "../util/styles/sizes" as *;
+@use "../util/styles/durations" as *;
+@use "sass:math" as math;
+
+.navItem {
+	display: flex;
+	text-decoration: none;
+	font-size: 2.5rem;
+	&:not(:last-of-type) {
+		margin: 2rem 0;
+	}
+	&:last-of-type {
+		margin-bottom: 0.5rem;
+	}
+	& > a {
+		color: $green;
+		display: flex;
+		justify-content: center;
+		transition: all 0.3s;
+		text-decoration: none;
+	}
+	& img {
+		width: 1em;
+		border-radius: 50%;
+	}
+	&:hover > a {
+		color: $darkGreen;
+	}
+	.linkContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		position: relative;
+		margin: 1rem 0;
+		& > .tag {
+			// display: none;
+			position: absolute;
+			top: 1rem;
+			padding-left: 0.5rem;
+			left: calc(calc($sidebar / 3.5) - $iconWidth + $sidebar);
+			opacity: 0;
+			transform: translateX(-15rem);
+			white-space: nowrap;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			& > p {
+				margin: 0 0 0 0.5rem;
+			}
+		}
+		& > div:first-of-type {
+			position: absolute;
+			top: 0;
+			left: calc(calc($sidebar / 3.5) - $iconWidth);
+		}
+		& > * {
+			transition: transform math.div($sidebarSlide, 2)
+				math.div($sidebarSlide, 4);
+		}
+		&:last-of-type {
+			margin-bottom: 2rem;
+		}
+	}
+	& .tag {
+		display: flex;
+	}
+}
+
+.rotate {
+	transform: rotateZ(-180deg);
+}

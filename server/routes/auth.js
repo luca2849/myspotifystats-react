@@ -1,7 +1,7 @@
 const config = require("config");
 const express = require("express");
 const router = express.Router();
-const { default: axios } = require("axios");
+const axios = require("axios");
 const { refreshToken } = require("../util/refreshToken");
 
 const client_id = config.get("SPOTIFY_CLIENT_ID");

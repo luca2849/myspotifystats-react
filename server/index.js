@@ -1,25 +1,39 @@
 const express = require("express");
+const next = require("next");
 const config = require("config");
-const path = require("path");
-const app = express();
 
-// Init Middleware
-app.use(express.json({ extend: false }));
+const port = config.get("PORT") || 4000;
+const env = config.get("ENV") || "DEV";
 
-// Define Routes
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/user", require("./routes/user"));
-app.use("/api/app", require("./routes/app"));
+const app = next({ dev: env === "DEV" });
+const handle = app.getRequestHandler();
 
-// Route for built client routes
-app.use(express.static("../client/build"));
-app.get("*", (req, res) => {
-	res.sendFile(
-		require("path").resolve(__dirname, "../client", "build", "index.html")
-	);
-});
+app.prepare()
+	.then(() => {
+		const server = express();
 
-const PORT = config.PORT || 5000;
-app.listen(PORT, () => {
-	console.log(`Server Listening on Port ${PORT}`);
-});
+		// Init Middleware
+		server.use(express.json({ extend: false }));
+
+		server.get("/api/hello", (req, res) =>
+			res.status(200).json({ hello: "world!!!" })
+		);
+
+		// Define Routes
+		server.use("/api/auth", require("./routes/auth"));
+		server.use("/api/user", require("./routes/user"));
+		server.use("/api/app", require("./routes/app"));
+
+		server.get("*", (req, res) => {
+			return handle(req, res);
+		});
+
+		server.listen(port, (err) => {
+			if (err) throw err;
+			console.log(`Listening on port ${port}`);
+		});
+	})
+	.catch((ex) => {
+		console.error(ex.stack);
+		process.exit(1);
+	});
