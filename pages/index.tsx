@@ -1,18 +1,12 @@
-import Link from "next/link";
+import Meta from "../components/Meta/Meta";
 
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
 	return (
 		<div className={styles.container}>
+			<Meta title="MySpotifyStats | Track your top Spotify statistics" />
 			<div>
-				{/* <h2>Home Page</h2>
-				<Link href="/login">
-					<p>Login</p>
-				</Link>
-				<Link href="/profile">
-					<p>Profile</p>
-				</Link> */}
 				<p>Hello</p>
 			</div>
 		</div>
