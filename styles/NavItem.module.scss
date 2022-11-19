@@ -1,6 +1,6 @@
-@use "../util/styles/colours" as *;
-@use "../util/styles/sizes" as *;
-@use "../util/styles/durations" as *;
+@use "../util/styles/vars/colours" as *;
+@use "../util/styles/vars/sizes" as *;
+@use "../util/styles/vars/durations" as *;
 @use "sass:math" as math;
 
 .navItem {

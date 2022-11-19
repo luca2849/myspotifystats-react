@@ -21,7 +21,7 @@ const SideNav = ({ user }: SideNavProps) => {
 			<div className={styles.top}>
 				<div className={styles.brand}>
 					<Link href="/">
-						<img src="/img/logo.png" alt={`User profile`} />
+						<img src="/img/logo.png" alt={`MySpotifyStats Logo`} />
 					</Link>
 				</div>
 				<NavItem

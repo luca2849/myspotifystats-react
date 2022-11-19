@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "./AppContainer.module.scss";
+
 import checkToken from "../../util/checkToken";
 import { setHeaders } from "../../util/setHeaders";
+
 import { connect } from "react-redux";
 import { loadUser, refreshToken } from "../../actions/auth";
-import { store } from "../../store";
 
 import SideNav from "../Navigation/SideNav";
 
@@ -34,12 +36,21 @@ const AppContainer = ({
 		// ensure user is loaded into state
 		if (localStorage.getItem("access_token")) loadUser();
 	}, [refreshToken]);
+	const router = useRouter();
 	return (
 		<>
 			{tokenSafe && (
 				<>
-					<SideNav />
-					<div className={styles.container}>{children}</div>
+					{router.pathname !== "/" && <SideNav />}
+					<div
+						className={
+							router.pathname !== "/"
+								? styles.container
+								: styles.homeContainer
+						}
+					>
+						{children}
+					</div>
 				</>
 			)}
 		</>
