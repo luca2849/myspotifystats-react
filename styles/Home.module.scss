@@ -1,0 +1,105 @@
+@use "../util/styles/colours" as *;
+@use "../util/styles/breakpoints" as *;
+
+.home {
+	padding: 1rem;
+}
+
+.top {
+	width: calc(100vw - 3rem);
+	height: calc(100vh - 3rem);
+	display: flex;
+	justify-content: space-between;
+}
+
+.brand {
+	& > img {
+		width: 60px;
+	}
+}
+
+.nav {
+	font-size: 1.5rem;
+}
+
+.navItem {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border-bottom: 2px solid transparent;
+	color: $green;
+	transition: all 0.2s;
+
+	&:hover {
+		border-bottom: 2px solid $green;
+	}
+}
+
+.header {
+	position: relative;
+}
+
+.hero {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 700px;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	& > h1 {
+		font-size: 3rem;
+	}
+	& span {
+		color: $green;
+	}
+
+	@media screen and (max-width: $md) {
+		left: 0;
+		transform: translate(0, -50%);
+		& > h1 {
+			font-size: 2rem;
+		}
+	}
+}
+
+.goDown {
+	position: absolute;
+	top: 95%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 3rem;
+	color: $green;
+	cursor: pointer;
+}
+
+.ScrollItem {
+	display: flex;
+	align-items: center;
+	font-size: 200%;
+	width: 100%;
+	padding: 1rem;
+	background: $green;
+	color: black;
+	transition: transform 0.1s;
+	transform: translate3d(0, 0, 0);
+	-webkit-transform: translate3d(0, 0, 0);
+	border-radius: 2rem;
+
+	&_icon {
+		margin-right: 3rem;
+		font-size: 6rem;
+	}
+
+	&_text {
+		text-transform: uppercase;
+		font-weight: bold;
+		& > p {
+			margin: 0;
+		}
+	}
+}
+
+.lower {
+	height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+}

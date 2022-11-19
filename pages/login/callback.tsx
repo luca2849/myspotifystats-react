@@ -17,7 +17,7 @@ const Callback = ({ generateToken }: CallbackProps) => {
 		// query local API for access token from spotify
 		if (!code) return;
 		generateToken({ code });
-		router.push("/");
+		router.push("/profile");
 	}, [code, generateToken]);
 	return <p>Redirecting...</p>;
 };
