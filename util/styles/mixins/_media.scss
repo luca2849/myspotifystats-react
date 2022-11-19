@@ -1,0 +1,25 @@
+@use "../vars/breakpoints" as *;
+
+@mixin for-phone {
+	@media (max-width: $xs) {
+		@content;
+	}
+}
+
+@mixin for-tablet {
+	@media (max-width: $sm) {
+		@content;
+	}
+}
+
+@mixin for-laptop {
+	@media (max-width: $md) {
+		@content;
+	}
+}
+
+@mixin for-desktop {
+	@media (max-width: $lg) {
+		@content;
+	}
+}
