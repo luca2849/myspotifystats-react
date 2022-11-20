@@ -1,5 +1,4 @@
 const connectedItems = document.querySelectorAll(".ConnectedItem");
-console.log(connectedItems);
 connectedItems.forEach((item) => {
 	const colour = item.style.background;
 	item.style.background = null;

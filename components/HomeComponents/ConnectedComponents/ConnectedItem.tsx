@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ConnectedItemInterface } from "./types";
 
-import styles from "../../styles/ConnectedComponents/ConnectedItem.module.scss";
+import styles from "../../../styles/ConnectedComponents/ConnectedItem.module.scss";
 
 const ConnectedItem = ({
 	item: { text, icon, body },
@@ -12,9 +12,10 @@ const ConnectedItem = ({
 	const containerStyles: React.CSSProperties = {
 		borderColor: primary,
 		color: primary,
+		background: secondary,
 	};
 	const overlayStyles: React.CSSProperties = {
-		background: primary,
+		background: secondary,
 	};
 	return (
 		<div className={styles.ConnectedItem} style={containerStyles}>
