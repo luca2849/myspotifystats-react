@@ -34,6 +34,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-bottom: 1rem;
 	}
 
 	& ._icon {
@@ -48,9 +52,9 @@
 	}
 
 	@mixin lineDown() {
-		height: 7rem;
+		height: calc(6rem - 4px);
 		width: 0px;
-		top: calc(100% + 3.75rem);
+		top: calc(100% + calc(3rem + 2px));
 		left: calc(50%);
 		transform: translate(0%, -50%);
 		border-left: 5px dashed;
@@ -115,10 +119,10 @@
 	&:not(:nth-of-type(3n)):not(:last-of-type) {
 		&::after {
 			height: 2.5px;
-			width: 10rem;
+			width: calc(0.33 * 100%);
 			border-top: 5px dashed;
 			top: 50%;
-			left: calc(100% + 5rem);
+			left: calc(100% + calc(0.33 * 100%) / 2);
 			@include for-laptop {
 				@include lineDown();
 			}

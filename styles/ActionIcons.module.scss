@@ -1,4 +1,5 @@
 @use "../util/styles/mixins/media" as *;
+@use "../util/styles/vars/animations" as *;
 @import "../util/styles/vars/colours";
 
 .actions {
@@ -40,12 +41,19 @@
 
 		& .lower {
 			border-top: 2px solid $background;
+			transition: all 0.3s;
 			& > * {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				padding: 2rem;
 				font-size: 1.25rem;
+			}
+			&:hover {
+				color: rgb(209, 209, 209);
+				& .linkIcon {
+					animation: sideBounce linear 0.33s 2 forwards;
+				}
 			}
 		}
 

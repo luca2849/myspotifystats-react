@@ -44,6 +44,7 @@ document.querySelector("#goDown").addEventListener("click", (e) => {
 
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
+		console.log(entry);
 		if (entry.isIntersecting) {
 			// Is present in viewport
 			entry.target.style.setProperty("--opacity", "1");

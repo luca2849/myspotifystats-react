@@ -1,0 +1,23 @@
+@keyframes bounce {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes sideBounce {
+	0% {
+		transform: translateX(0px);
+	}
+	50% {
+		transform: translateX(10px);
+	}
+	100% {
+		transform: translateX(0px);
+	}
+}
