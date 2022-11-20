@@ -16,7 +16,8 @@ const ActionIcons = ({ actions }: ActionIconsProps) => {
 					</div>
 					<div className={styles.lower}>
 						<Link href="/top">
-							Take me there! <BsArrowRight />
+							Take me there!{" "}
+							<BsArrowRight className={styles.linkIcon} />
 						</Link>
 					</div>
 				</div>

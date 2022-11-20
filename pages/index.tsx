@@ -1,19 +1,21 @@
 import Link from "next/link";
 import Script from "next/script";
 import Meta from "../components/Meta/Meta";
-import { FaChevronCircleDown, FaChalkboardTeacher } from "react-icons/fa";
+import ConnectedItems from "../components/HomeComponents/ConnectedComponents/ConnectedItems";
+import ActionIcons from "../components/HomeComponents/ActionIcons";
+
+import { FaChevronCircleDown, FaRegClipboard } from "react-icons/fa";
 import {
 	MdOutlineWavingHand,
 	MdOutlineLogin,
-	MdOutlineCollections,
 	MdQueryStats,
 	MdOutlineShare,
+	MdOutlineAnalytics,
 } from "react-icons/md";
-import { VscGraphLine, VscHistory } from "react-icons/vsc";
+import { VscGraphLine, VscHistory, VscAccount } from "react-icons/vsc";
+import { BsDisplay } from "react-icons/bs";
 
 import styles from "../styles/Home.module.scss";
-import ConnectedItems from "../components/HomeComponents/ConnectedComponents/ConnectedItems";
-import ActionIcons from "../components/HomeComponents/ActionIcons";
 
 export default function Home() {
 	return (
@@ -82,7 +84,7 @@ const connectedItems = [
 	{
 		text: "Information Gathering",
 		body: "Once you log in, we can query Spotify to find out some information about your account.",
-		icon: <MdOutlineCollections />,
+		icon: <FaRegClipboard />,
 	},
 	{
 		text: "Data Crunching",
@@ -92,7 +94,7 @@ const connectedItems = [
 	{
 		text: "Presentation",
 		body: "Once we've processed the data, we display it to you!",
-		icon: <FaChalkboardTeacher />,
+		icon: <BsDisplay />,
 	},
 	{
 		text: "Share your Results",
@@ -107,15 +109,15 @@ const actions = [
 		icon: <VscGraphLine />,
 	},
 	{
-		text: "See top tracks and artists",
-		icon: <VscGraphLine />,
-	},
-	{
 		text: "See what's playing and what's recently played",
 		icon: <VscHistory />,
 	},
 	{
-		text: "See what's playing and what's recently played",
-		icon: <VscHistory />,
+		text: "View account information",
+		icon: <VscAccount />,
+	},
+	{
+		text: "Run complex track and playlist analysis",
+		icon: <MdOutlineAnalytics />,
 	},
 ];

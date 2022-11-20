@@ -44,7 +44,7 @@ a {
 	width: var(--size);
 	height: var(--size);
 	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
-		radial-gradient(circle closest-side, var(--primary), #0c1015);
+		radial-gradient(circle closest-side, var(--primary), inherit);
 	opacity: 0.4;
 	transform: translate(-50%, -50%);
 	transition: width 0.2s ease, height 0.2s ease;
