@@ -67,7 +67,7 @@
 	}
 
 	// Last in row (down)
-	&:nth-of-type(3n) {
+	&:nth-of-type(3n):not(:last-of-type) {
 		&::after {
 			height: 3rem;
 			width: 2.5px;
@@ -81,7 +81,7 @@
 	}
 
 	// Long horizontal
-	&:nth-of-type(3n) {
+	&:nth-of-type(3n):not(:last-of-type) {
 		&::before {
 			height: 2.5px;
 			// Width of container minus one full card width

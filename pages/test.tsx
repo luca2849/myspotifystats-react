@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ConnectedItems from "../components/ConnectedComponents/ConnectedItems";
+import ConnectedItems from "../components/HomeComponents/ConnectedComponents/ConnectedItems";
 import { FaAccessibleIcon, FaEnvelopeOpen, FaSpotify } from "react-icons/fa";
-import { ConnectedItemInterface } from "../components/ConnectedComponents/types";
+import { ConnectedItemInterface } from "../components/HomeComponents/ConnectedComponents/types";
 import Script from "next/script";
 
 const test = ({}) => {

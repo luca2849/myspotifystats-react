@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Script from "next/script";
 import ConnectedItem from "./ConnectedItem";
 import { ConnectedItemInterface } from "./types";
 
-import styles from "../../styles/ConnectedComponents/ConnectedItems.module.scss";
+import styles from "../../../styles/ConnectedComponents/ConnectedItems.module.scss";
 
 const ConnectedItems = ({ items, primary, secondary }: ConnectedItemsProps) => {
 	return (
 		<div className={styles.ConnectedItems}>
+			<Script
+				src="/scripts/hovers.js"
+				strategy="afterInteractive"
+				defer
+			/>
 			{items.map((item, index) => {
 				return (
 					<ConnectedItem

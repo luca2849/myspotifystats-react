@@ -1,0 +1,56 @@
+@use "../util/styles/mixins/media" as *;
+@import "../util/styles/vars/colours";
+
+.actions {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 5rem;
+
+	@include for-laptop {
+		flex-wrap: wrap;
+	}
+
+	& .action {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 20%;
+		border-radius: 10px;
+		background: $darkBackground;
+		box-shadow: 10px 10px 20px rgba($darkBackground, 0.6);
+		color: white;
+		opacity: var(--opacity);
+		transform: translateY(var(--transform));
+		transition: opacity 0.5s, transform 0.5s;
+		transition-delay: calc(var(--n) * 250ms);
+		@include for-laptop {
+			flex: 0 0 55%;
+			margin-bottom: 2rem;
+		}
+		@include for-phone {
+			flex: 0 0 90%;
+		}
+		& .content {
+			text-align: center;
+			font-size: 1.25rem;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+			padding: 2rem;
+		}
+
+		& .lower {
+			border-top: 2px solid $background;
+			& > * {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 2rem;
+				font-size: 1.25rem;
+			}
+		}
+
+		& .icon {
+			font-size: 3rem;
+		}
+	}
+}
