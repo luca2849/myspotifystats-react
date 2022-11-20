@@ -31,7 +31,11 @@ const ConnectedItem = ({
 		</div>
 	);
 };
-ConnectedItem.propTypes = {};
+ConnectedItem.propTypes = {
+	item: PropTypes.object.isRequired,
+	primary: PropTypes.string,
+	secondary: PropTypes.string,
+};
 
 interface ConnectedItemProps {
 	item: ConnectedItemInterface;

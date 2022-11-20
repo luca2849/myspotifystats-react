@@ -5,12 +5,14 @@
 	flex-direction: column;
 	border-width: 2px;
 	border-style: solid;
-	width: 25%;
+	// 3 per-row with some spacing
+	width: 27.5%;
 	padding: 2rem;
 	border-radius: 1rem;
-	margin: 3rem 1rem;
+	margin: 3rem 0;
 	position: relative;
 	z-index: 10;
+	// Block mouse hover effects for JS effect
 	pointer-events: none;
 	@include for-laptop {
 		width: 80%;
@@ -24,6 +26,7 @@
 		height: 100%;
 		z-index: -1;
 		border-radius: inherit;
+		// Allow mouse effects only on the overlay
 		pointer-events: all;
 	}
 
@@ -81,9 +84,12 @@
 	&:nth-of-type(3n) {
 		&::before {
 			height: 2.5px;
-			width: 295%;
+			// Width of container minus one full card width
+			// (for half of 1st and half of 3rd)
+			width: calc(60vw - 100%);
 			top: calc(100% + 3rem);
-			left: calc(50% - calc(295% / 2));
+			// Shift start to exact middle of end card
+			left: calc(50% - calc(calc(60vw - 100%) / 2));
 			border-top: 5px dashed;
 			@include for-laptop {
 				display: none;
