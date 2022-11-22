@@ -1,6 +1,6 @@
 @use "../util/styles/mixins/media" as *;
 @use "../util/styles/vars/animations" as *;
-@import "../util/styles/vars/colours";
+@use "../util/styles/vars/colours" as *;
 
 .actions {
 	display: flex;
