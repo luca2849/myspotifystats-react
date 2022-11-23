@@ -3,11 +3,12 @@
 @use "../util/styles/vars/animations" as *;
 
 .home {
-	padding: 1rem;
+	width: 100vw;
+	padding: 1rem 2rem;
 }
 
 .top {
-	width: calc(100vw - 3rem);
+	width: 100%;
 	height: calc(100vh - 3rem);
 	display: flex;
 	justify-content: space-between;
@@ -103,7 +104,8 @@
 	}
 }
 
-.lowerSection {
+.lowerSection,
+.lowerSectionAlternate {
 	--opacity: 0;
 	width: 75vw;
 	min-height: 75vh;
@@ -125,5 +127,68 @@
 			width: 33%;
 			margin: 0.5rem auto 5rem auto;
 		}
+	}
+
+	&.fullWidth {
+		position: relative;
+		width: 100vw;
+		& .accent {
+			position: absolute;
+			top: 0;
+			z-index: 20;
+			$h: 50px;
+			height: $h;
+			background: rgba($green, 0.5);
+			transition: all 1s;
+			&:first-of-type {
+				right: 0;
+				width: 35vw;
+				background: rgba($darkGreen, 0.5);
+				transform: translateY(-($h / 2));
+			}
+			&:nth-of-type(2) {
+				top: 25px;
+				right: calc(var(--move) * calc(35vw * 0.6));
+				width: 25vw;
+				transform: translateY(-($h / 1.5));
+			}
+			&:nth-of-type(3) {
+				top: calc(100%);
+				left: 0;
+				width: 30vw;
+				background: rgba($darkGreen, 0.5);
+				transform: translateY(-($h / 2));
+			}
+			&:nth-of-type(4) {
+				top: calc(100% - 25px);
+				left: calc(var(--move) * calc(30vw * 0.666));
+				width: 45vw;
+				transform: translateY(-($h / 4));
+			}
+		}
+	}
+}
+
+.skew {
+	height: 50vh;
+	background: $lightBackground;
+	transform: skewY(-6deg);
+	color: $darkBackground;
+	/* antialiasing */
+	outline: 1px solid transparent;
+	-webkit-backface-visibility: hidden;
+	will-change: transform;
+	-webkit-perspective: 1000;
+
+	& .textContainer {
+		will-change: transform;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 4rem;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		word-spacing: 4px;
 	}
 }
