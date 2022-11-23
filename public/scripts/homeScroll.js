@@ -44,7 +44,6 @@ document.querySelector("#goDown").addEventListener("click", (e) => {
 
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
-		console.log(entry);
 		if (entry.isIntersecting) {
 			// Is present in viewport
 			entry.target.style.setProperty("--opacity", "1");
@@ -65,3 +64,17 @@ actionCards.forEach((entry, index) => {
 	entry.style.setProperty("--n", `${index}`);
 	observer.observe(entry);
 });
+
+const accentObserver = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			// Is present in viewport
+			entry.target.style.setProperty("--move", "1");
+		} else {
+			entry.target.style.setProperty("--move", "0");
+		}
+	});
+});
+
+const heroArea = document.querySelector("#hero");
+accentObserver.observe(heroArea);

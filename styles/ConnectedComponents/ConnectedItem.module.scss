@@ -12,6 +12,7 @@
 	margin: 3rem 0;
 	position: relative;
 	z-index: 10;
+	text-align: center;
 	// Block mouse hover effects for JS effect
 	pointer-events: none;
 	@include for-laptop {

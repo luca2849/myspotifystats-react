@@ -66,6 +66,20 @@ export default function Home() {
 				<h2 className={styles.sectionTitle}>What can I do?</h2>
 				<ActionIcons actions={actions} />
 			</section>
+			<section
+				className={`${styles.lowerSectionAlternate} ${styles.fullWidth}`}
+				id="hero"
+			>
+				<div className={styles.skew}>
+					<div className={styles.accent}></div>
+					<div className={styles.accent}></div>
+					<div className={styles.accent}></div>
+					<div className={styles.accent}></div>
+					<div className={styles.textContainer}>
+						<h1>Some Example Text</h1>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 }
