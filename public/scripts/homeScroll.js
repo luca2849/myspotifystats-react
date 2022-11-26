@@ -37,7 +37,8 @@ document.querySelector("#goDown").addEventListener("click", (e) => {
 	window.scroll({
 		top:
 			document.querySelector("#howItWorks").getBoundingClientRect().top +
-			window.scrollY,
+			window.scrollY -
+			50,
 		behavior: "smooth",
 	});
 });
@@ -50,6 +51,7 @@ const observer = new IntersectionObserver((entries) => {
 			entry.target.style.setProperty("--transform", "0px");
 		} else {
 			if (window.innerWidth < 1024) return;
+			if (checkIfHide(entry.target)) return;
 			entry.target.style.setProperty("--opacity", "0");
 			entry.target.style.setProperty("--transform", "100px");
 		}
@@ -62,6 +64,7 @@ lowerSections.forEach((entry) => observer.observe(entry));
 const actionCards = document.querySelectorAll("[class*='action']");
 actionCards.forEach((entry, index) => {
 	entry.style.setProperty("--n", `${index}`);
+	entry.style.setProperty("--hide", false);
 	observer.observe(entry);
 });
 
@@ -78,3 +81,8 @@ const accentObserver = new IntersectionObserver((entries) => {
 
 const heroArea = document.querySelector("#hero");
 accentObserver.observe(heroArea);
+
+const checkIfHide = (target) => {
+	const styles = Object.values(target.style);
+	return styles.includes("--hide");
+};

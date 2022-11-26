@@ -76,10 +76,20 @@ export default function Home() {
 					<div className={styles.accent}></div>
 					<div className={styles.accent}></div>
 					<div className={styles.textContainer}>
-						<h1>Some Example Text</h1>
+						<h1>Tired of waiting for wrapped?</h1>
+						<h5>Then try MySpotifyStats.</h5>
 					</div>
 				</div>
 			</section>
+			<footer className={styles.footer}>
+				<p>
+					Created by{" "}
+					<Link href="https://lucapassariello.co.uk" target="_blank">
+						Luca Passariello
+					</Link>
+				</p>
+				<p>Copyright &copy; 2022</p>
+			</footer>
 		</>
 	);
 }

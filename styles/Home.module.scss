@@ -171,9 +171,10 @@
 
 .skew {
 	height: 50vh;
-	background: $lightBackground;
+	background: $background;
 	transform: skewY(-6deg);
-	color: $darkBackground;
+	color: white;
+	box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.5);
 	/* antialiasing */
 	outline: 1px solid transparent;
 	-webkit-backface-visibility: hidden;
@@ -181,8 +182,10 @@
 	-webkit-perspective: 1000;
 
 	& .textContainer {
+		text-align: center;
 		will-change: transform;
 		position: absolute;
+		width: 80%;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
@@ -190,5 +193,29 @@
 		text-transform: uppercase;
 		letter-spacing: 4px;
 		word-spacing: 4px;
+	}
+}
+
+.footer {
+	min-height: 10vh;
+	background: $darkBackground;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+
+	& p {
+		margin: 1rem 0 0;
+	}
+
+	& a {
+		color: $green;
+		border-bottom: 1px solid transparent;
+		transition: all 0.2s;
+		&:hover {
+			border-color: $green;
+		}
 	}
 }

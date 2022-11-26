@@ -5,7 +5,7 @@
 .actions {
 	display: flex;
 	justify-content: space-evenly;
-	margin-top: 5rem;
+	margin-top: 10rem;
 
 	@include for-laptop {
 		flex-wrap: wrap;
@@ -23,7 +23,7 @@
 		opacity: var(--opacity);
 		transform: translateY(var(--transform));
 		transition: opacity 0.5s, transform 0.5s;
-		transition-delay: calc(var(--n) * 250ms);
+		transition-delay: calc(var(--n) * 125ms);
 		@include for-laptop {
 			flex: 0 0 55%;
 			margin-bottom: 2rem;
