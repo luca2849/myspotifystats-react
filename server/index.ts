@@ -1,5 +1,5 @@
-const express = require("express");
-const next = require("next");
+import express, { Request, Response, ErrorRequestHandler } from "express";
+import next from "next";
 const config = require("config");
 
 const port = config.get("PORT") || 4000;
@@ -12,10 +12,9 @@ app.prepare()
 	.then(() => {
 		const server = express();
 
-		// Init Middleware
-		server.use(express.json({ extend: false }));
+		server.use(express.json);
 
-		server.get("/api/hello", (req, res) =>
+		server.get("/api/hello", (req: Request, res: Response) =>
 			res.status(200).json({ hello: "world!!!" })
 		);
 
@@ -28,12 +27,13 @@ app.prepare()
 			return handle(req, res);
 		});
 
-		server.listen(port, (err) => {
-			if (err) throw err;
+		server.listen(port, () => {
 			console.log(`Listening on port ${port}`);
 		});
 	})
-	.catch((ex) => {
-		console.error(ex.stack);
+	.catch((err: ErrorRequestHandler) => {
+		console.error(err);
 		process.exit(1);
 	});
+
+export {};
