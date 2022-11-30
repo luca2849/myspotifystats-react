@@ -8,6 +8,10 @@ const env = config.get("ENV") || "DEV";
 const app = next({ dev: env === "DEV" });
 const handle = app.getRequestHandler();
 
+import AuthRoutes from "./routes/auth";
+import UserRoutes from "./routes/user";
+import AppRoutes from "./routes/app";
+
 app.prepare()
 	.then(() => {
 		const server = express();
@@ -19,9 +23,9 @@ app.prepare()
 		);
 
 		// Define Routes
-		server.use("/api/auth", require("./routes/auth"));
-		server.use("/api/user", require("./routes/user"));
-		server.use("/api/app", require("./routes/app"));
+		server.use("/api/auth", AuthRoutes);
+		server.use("/api/user", UserRoutes);
+		server.use("/api/app", AppRoutes);
 
 		server.get("*", (req, res) => {
 			return handle(req, res);

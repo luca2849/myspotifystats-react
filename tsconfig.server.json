@@ -6,5 +6,6 @@
 		"outDir": "dist",
 		"noEmit": false
 	},
-	"include": ["server"]
+	"include": ["server"],
+	"files": ["custom.d.ts"]
 }
