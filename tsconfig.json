@@ -15,6 +15,12 @@
 		"jsx": "preserve",
 		"incremental": true
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "reducers/app.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"reducers/app.ts",
+		"server/middleware/topCheck.ts"
+	],
 	"exclude": ["node_modules"]
 }

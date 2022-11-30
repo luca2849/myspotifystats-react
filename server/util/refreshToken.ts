@@ -1,5 +1,5 @@
-const axios = require("axios");
-const config = require("config");
+import axios from "axios";
+import config from "config";
 
 /*
  * Function for refreshing access token
@@ -8,7 +8,7 @@ const config = require("config");
  *
  * @return {String}            New access token
  */
-const refreshToken = async (refresh) => {
+const refreshToken = async (refresh: string): Promise<string | null> => {
 	if (!refresh) return null;
 	try {
 		const url = "https://accounts.spotify.com/api/token";

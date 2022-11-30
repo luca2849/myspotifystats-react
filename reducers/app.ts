@@ -5,7 +5,7 @@ const initialState = {
 	loading: true,
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: IAction) => {
 	const { type, payload } = action;
 	switch (type) {
 		case TOP_RECEIVED:
@@ -19,5 +19,10 @@ const authReducer = (state = initialState, action) => {
 			return state;
 	}
 };
+
+interface IAction<T = any> {
+	type: T;
+	payload: T;
+}
 
 export default authReducer;

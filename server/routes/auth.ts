@@ -1,13 +1,13 @@
-const config = require("config");
-const express = require("express");
-const router = express.Router();
-const axios = require("axios");
-const { refreshToken } = require("../util/refreshToken");
+import config from "config";
+import express, { Request, Response } from "express";
+import axios from "axios";
+import { refreshToken } from "../../actions/auth";
 
+const router = express.Router();
 const client_id = config.get("SPOTIFY_CLIENT_ID");
 const client_secret = config.get("SPOTIFY_CLIENT_SECRET");
 
-router.get("/token", async (req, res) => {
+router.get("/token", async (req: Request, res: Response) => {
 	const { code, state } = req.query;
 
 	// if (state === null || state !== state_key) {
@@ -21,7 +21,7 @@ router.get("/token", async (req, res) => {
 	const host =
 		config.get("ENV") === "PROD" ? req.get("host") : "localhost:3000";
 	data.append("redirect_uri", `${protocol}://${host}/login/callback`);
-	data.append("code", code);
+	data.append("code", code as string);
 	let options = {
 		url: "https://accounts.spotify.com/api/token",
 		method: "POST",
@@ -49,7 +49,7 @@ router.get("/token", async (req, res) => {
 	}
 });
 
-router.get("/token/refresh", async (req, res) => {
+router.get("/token/refresh", async (req: Request, res: Response) => {
 	const { refresh } = req.query;
 	if (!refresh)
 		return res.status(400).json({ error: "No refresh token provided" });
@@ -63,4 +63,4 @@ router.get("/token/refresh", async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;
