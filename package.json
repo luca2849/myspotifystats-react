@@ -4,8 +4,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "nodemon server/index.js",
-		"devServer": "ts-node --project tsconfig.server.json server/index.ts",
+		"dev_server": "ts-node --project tsconfig.server.json server/index.ts",
 		"build": "next build",
+		"build_server": "npx tsc --p tsconfig.server.json",
 		"start": "next start",
 		"lint": "next lint"
 	},
