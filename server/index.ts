@@ -16,7 +16,7 @@ app.prepare()
 	.then(() => {
 		const server = express();
 
-		server.use(express.json);
+		server.use(express.json());
 
 		server.get("/api/hello", (req: Request, res: Response) =>
 			res.status(200).json({ hello: "world!!!" })
