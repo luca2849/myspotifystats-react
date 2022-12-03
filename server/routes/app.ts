@@ -1,8 +1,8 @@
 import express, { Response, ErrorRequestHandler } from "express";
-import tokenCheck from "../middleware/tokenCheck";
-import topCheck from "../middleware/topCheck";
-import { getTopItems } from "../util/appFunctions";
-import { ITokenRequest, TimePeriod } from "../types";
+import tokenCheck from "../middleware/tokenCheck.js";
+import topCheck from "../middleware/topCheck.js";
+import { getTopItems } from "../util/appFunctions.js";
+import { ITokenRequest, TimePeriod } from "../types.js";
 
 const router = express.Router();
 
