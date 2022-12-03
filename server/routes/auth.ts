@@ -1,7 +1,7 @@
 import config from "config";
 import express, { Request, Response } from "express";
 import axios from "axios";
-import { refreshToken } from "../../actions/auth";
+import { refreshToken } from "../../actions/auth.js";
 
 const router = express.Router();
 const client_id = config.get("SPOTIFY_CLIENT_ID");

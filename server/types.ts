@@ -1,4 +1,3 @@
-import { Interface } from "node:readline/promises";
 import { Request } from "express";
 
 export interface IQueryParams {

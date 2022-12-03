@@ -8,9 +8,9 @@ const env = config.get("ENV") || "DEV";
 const app = next({ dev: env === "DEV" });
 const handle = app.getRequestHandler();
 
-import AuthRoutes from "./routes/auth";
-import UserRoutes from "./routes/user";
-import AppRoutes from "./routes/app";
+import AuthRoutes from "./routes/auth.js";
+import UserRoutes from "./routes/user.js";
+import AppRoutes from "./routes/app.js";
 
 app.prepare()
 	.then(() => {

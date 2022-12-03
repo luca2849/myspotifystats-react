@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ITokenRequest } from "../types";
+import { ITokenRequest } from "../types.js";
 
 /*
  * Middleware for checking token validity
