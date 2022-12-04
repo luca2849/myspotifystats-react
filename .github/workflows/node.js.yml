@@ -17,7 +17,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 16
-            - name: Install Dependencies and Build Next App
+            - name: Install Dependencies, Build Next App & server
               run: |
                   pwd
                   ls -la
