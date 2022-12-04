@@ -34,4 +34,4 @@ const refreshToken = async (refresh: string): Promise<string | null> => {
 	}
 };
 
-module.exports = { refreshToken };
+export default refreshToken;
