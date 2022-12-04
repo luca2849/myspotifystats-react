@@ -1,6 +1,5 @@
 {
-	"verbose": true,
-	"ignore": ["node_modules", "build"],
-	"watch": ["server/**/*", "index.js"],
-	"ext": "js json"
+	"watch": ["server", "api"],
+	"exec": "ts-node --project tsconfig.server.json server/index.ts",
+	"ext": "js ts"
 }

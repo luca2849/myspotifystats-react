@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
-import tokenCheck from "../middleware/tokenCheck.js";
-import { ITokenRequest } from "../types.js";
+import tokenCheck from "../middleware/tokenCheck";
+import { ITokenRequest } from "../types";
 
 const router = express.Router();
 
