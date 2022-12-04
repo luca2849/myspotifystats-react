@@ -1,7 +1,7 @@
 import config from "config";
 import express, { Request, Response } from "express";
 import axios from "axios";
-import { refreshToken } from "../../actions/auth.js";
+import { refreshToken } from "../../actions/auth";
 
 const router = express.Router();
 const client_id = config.get("SPOTIFY_CLIENT_ID");
@@ -19,7 +19,7 @@ router.get("/token", async (req: Request, res: Response) => {
 	data.append("grant_type", "authorization_code");
 	const protocol = config.get("ENV") === "PROD" ? "https" : "http";
 	const host =
-		config.get("ENV") === "PROD" ? req.get("host") : "localhost:3000";
+		config.get("ENV") === "PROD" ? req.get("host") : "localhost:4000";
 	data.append("redirect_uri", `${protocol}://${host}/login/callback`);
 	data.append("code", code as string);
 	let options = {

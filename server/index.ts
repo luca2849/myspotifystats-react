@@ -1,43 +1,38 @@
-import express, { Request, Response, ErrorRequestHandler } from "express";
+import express, { Request, Response } from "express";
 import next from "next";
-const config = require("config");
+import config from "config";
 
-const port = config.get("PORT") || 4000;
+import AuthRoutes from "./routes/auth";
+import UserRoutes from "./routes/user";
+import AppRoutes from "./routes/app";
+
+const port: string = config.get("PORT") || "4000";
 const env = config.get("ENV") || "DEV";
 
-const app = next({ dev: env === "DEV" });
+const PORT: number = parseInt(port, 10) || 3000;
+
+const dev: boolean = process.env.NODE_ENV !== "production";
+
+const app = next({ dev });
+
 const handle = app.getRequestHandler();
 
-import AuthRoutes from "./routes/auth.js";
-import UserRoutes from "./routes/user.js";
-import AppRoutes from "./routes/app.js";
+app.prepare().then(() => {
+	const server = express();
 
-app.prepare()
-	.then(() => {
-		const server = express();
+	server.use(express.json());
 
-		server.use(express.json());
+	server.get("/health_check", (req: Request, res: Response) =>
+		res.status(200).json({ status: "healthy" })
+	);
 
-		server.get("/api/hello", (req: Request, res: Response) =>
-			res.status(200).json({ hello: "world!!!" })
-		);
+	server.use("/api/auth", AuthRoutes);
+	server.use("/api/user", UserRoutes);
+	server.use("/api/app", AppRoutes);
 
-		// Define Routes
-		server.use("/api/auth", AuthRoutes);
-		server.use("/api/user", UserRoutes);
-		server.use("/api/app", AppRoutes);
+	server.all("*", (req: Request, res: Response) => handle(req, res));
 
-		server.get("*", (req, res) => {
-			return handle(req, res);
-		});
-
-		server.listen(port, () => {
-			console.log(`Listening on port ${port}`);
-		});
-	})
-	.catch((err: ErrorRequestHandler) => {
-		console.error(err);
-		process.exit(1);
+	server.listen(PORT, () => {
+		console.log(`> Ready on http://localhost:${PORT}`);
 	});
-
-export {};
+});
