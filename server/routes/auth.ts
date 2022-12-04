@@ -17,9 +17,9 @@ router.get("/token", async (req: Request, res: Response) => {
 	if (!code) return res.status(400).json({ error: "Missing code parameter" });
 	const data = new URLSearchParams();
 	data.append("grant_type", "authorization_code");
-	const protocol = config.get("ENV") === "PROD" ? "https" : "http";
+	const protocol = config.get("ENV") === "production" ? "https" : "http";
 	const host =
-		config.get("ENV") === "PROD" ? req.get("host") : "localhost:4000";
+		config.get("ENV") === "production" ? req.get("host") : "localhost:4005";
 	data.append("redirect_uri", `${protocol}://${host}/login/callback`);
 	data.append("code", code as string);
 	let options = {

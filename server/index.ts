@@ -6,12 +6,12 @@ import AuthRoutes from "./routes/auth";
 import UserRoutes from "./routes/user";
 import AppRoutes from "./routes/app";
 
-const port: string = config.get("PORT") || "4000";
+const port: string = config.get("PORT") || "4005";
 const env = config.get("ENV") || "DEV";
 
-const PORT: number = parseInt(port, 10) || 3000;
+const PORT: number = parseInt(port, 10) || 4005;
 
-const dev: boolean = process.env.NODE_ENV !== "production";
+const dev: boolean = env !== "production";
 
 const app = next({ dev });
 
