@@ -176,8 +176,10 @@
 	color: $darkBackground;
 	/* antialiasing */
 	outline: 1px solid transparent;
+	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	will-change: transform;
+	perspective: 1000;
 	-webkit-perspective: 1000;
 
 	& .textContainer {

@@ -1,11 +1,9 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: MySpotifyStats Release PR Test Build
 
 on:
-    push:
-        branches: ["release"]
     pull_request:
         branches: ["release"]
 
@@ -19,7 +17,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 16
-            - name: Install Dependencies and Build React App
+            - name: Install Dependencies, Build Next App & server
               run: |
                   pwd
                   ls -la

@@ -1,10 +1,11 @@
-const config = require("config");
-const express = require("express");
-const router = express.Router();
-const axios = require("axios");
-const tokenCheck = require("../middleware/tokenCheck");
+import express, { Request, Response } from "express";
+import axios from "axios";
+import tokenCheck from "../middleware/tokenCheck";
+import { ITokenRequest } from "../types";
 
-router.get("/me", [tokenCheck], async (req, res) => {
+const router = express.Router();
+
+router.get("/me", [tokenCheck], async (req: ITokenRequest, res: Response) => {
 	try {
 		const response = await axios({
 			url: "https://api.spotify.com/v1/me",
@@ -20,4 +21,4 @@ router.get("/me", [tokenCheck], async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;

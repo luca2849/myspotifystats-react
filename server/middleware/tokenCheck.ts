@@ -1,3 +1,6 @@
+import { Request, Response, NextFunction } from "express";
+import { ITokenRequest } from "../types.js";
+
 /*
  * Middleware for checking token validity
  *
@@ -7,7 +10,7 @@
  *
  * @return {Object}        HTTP response (if invalid, or continue if valid)
  */
-module.exports = (req, res, next) => {
+export default (req: ITokenRequest, res: Response, next: NextFunction) => {
 	// Get token created time
 	const created_at = req.headers["created-at"];
 	// check if no created time
@@ -18,11 +21,11 @@ module.exports = (req, res, next) => {
 	try {
 		const current_unix_time = Math.floor(new Date().getTime() / 1000);
 		// Check if valid
-		if (current_unix_time - created_at > 3590) {
+		if (current_unix_time - parseInt(created_at as string, 10) > 3590) {
 			return res.status(400).json({ error: "Token expired." });
 		}
 		// Make token more easily accessible
-		req.token = req.headers["x-auth-token"];
+		req.token = req.headers["x-auth-token"] as string;
 		next();
 	} catch (error) {
 		return res.status(401).json({ error: "Token expired." });

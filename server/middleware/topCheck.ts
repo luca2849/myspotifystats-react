@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from "express";
 /*
  * Middleware for checking validity of top tracks/artists request
  *
@@ -7,9 +8,9 @@
  *
  * @return {Object}        HTTP response (if invalid, or continue if valid)
  */
-module.exports = (req, res, next) => {
+export default (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { limit, timePeriod } = req.query;
+		const { limit, timePeriod } = req.query as IQueryParams;
 		const { type } = req.params;
 		if (!["tracks", "artists"].includes(type))
 			return res.status(400).json({ msg: "Invalid type" });
@@ -24,3 +25,9 @@ module.exports = (req, res, next) => {
 		return res.status(401).json({ error: "Token expired." });
 	}
 };
+
+interface IQueryParams {
+	limit: number;
+	timePeriod: string;
+	[key: string]: string | number;
+}

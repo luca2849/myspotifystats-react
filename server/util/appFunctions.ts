@@ -1,4 +1,8 @@
-const axios = require("axios");
+import { TopItem, token } from "../types";
+
+import { TimePeriod } from "../types";
+
+import axios from "axios";
 
 /*
  * Function for gathering top items
@@ -11,7 +15,7 @@ const axios = require("axios");
  *
  * @return {Array}    results 	  A list of objects containing either top tracks or artists
  */
-const getTopItems = async (token, type, limit, timePeriod) => {
+const getTopItems: IGetTopItems = async (token, type, limit, timePeriod) => {
 	switch (type) {
 		case "tracks":
 		case "artists": {
@@ -23,7 +27,7 @@ const getTopItems = async (token, type, limit, timePeriod) => {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			return results;
+			return results.data;
 		}
 		default:
 			return {};
@@ -70,8 +74,13 @@ const getHistory = async (token, limit = 10) => {
 	}
 };
 
-module.exports = {
-	getTopItems,
-	getCurrentlyPlaying,
-	getHistory,
-};
+interface IGetTopItems {
+	(
+		token: token,
+		type: string,
+		limit: NonNullable<string | null | undefined>,
+		timePeriod: TimePeriod
+	): TopItem | {};
+}
+
+export { getTopItems, getCurrentlyPlaying, getHistory };

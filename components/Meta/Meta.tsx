@@ -2,9 +2,9 @@ import React from "react";
 import Head from "next/head";
 
 interface MetaProps {
-	keywords: string;
-	description: string;
-	title: string;
+	keywords?: string;
+	description?: string;
+	title?: string;
 }
 
 const Meta = ({ keywords, description, title }: MetaProps) => {
