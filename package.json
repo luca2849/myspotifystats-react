@@ -9,7 +9,7 @@
 		"buildClient": "next build",
 		"dev": "nodemon",
 		"postinstall": "install-types",
-		"start": "set NODE_ENV=production&& node dist/server/index.js"
+		"start": "node dist/index.js"
 	},
 	"repository": {
 		"type": "git",
