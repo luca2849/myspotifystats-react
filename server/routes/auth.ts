@@ -1,7 +1,7 @@
 import config from "config";
 import express, { Request, Response } from "express";
 import axios from "axios";
-import { refreshToken } from "../../actions/auth";
+import refreshToken from "../util/refreshToken";
 
 const router = express.Router();
 const client_id = config.get("SPOTIFY_CLIENT_ID");
@@ -54,7 +54,7 @@ router.get("/token/refresh", async (req: Request, res: Response) => {
 	if (!refresh)
 		return res.status(400).json({ error: "No refresh token provided" });
 	try {
-		const access_token = await refreshToken(refresh);
+		const access_token = await refreshToken(refresh as string);
 		const created_at = Math.floor(new Date().getTime() / 1000);
 		return res.status(200).json({ access_token, created_at });
 	} catch (error) {
