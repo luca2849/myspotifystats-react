@@ -2,7 +2,7 @@ import { TopItem, token } from "../types";
 
 import { TimePeriod } from "../types";
 
-const { default: axios } = require("axios");
+import axios from "axios";
 
 /*
  * Function for gathering top items
@@ -34,6 +34,46 @@ const getTopItems: IGetTopItems = async (token, type, limit, timePeriod) => {
 	}
 };
 
+/*
+ * Function for gathering top items
+ * @return {Array}    results 	  A list of objects containing either top tracks or artists
+ */
+const getCurrentlyPlaying = async (token) => {
+	const url = `https://api.spotify.com/v1/me/player/currently-playing`;
+	try {
+		const res = await axios({
+			url: url,
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return res.data === "" ? {} : res.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+/*
+ * Function for gathering top items
+ * @return {Array}    results 	  A list of objects containing either top tracks or artists
+ */
+const getHistory = async (token, limit = 10) => {
+	const url = `https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`;
+	try {
+		const res = await axios({
+			url: url,
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 interface IGetTopItems {
 	(
 		token: token,
@@ -43,4 +83,4 @@ interface IGetTopItems {
 	): TopItem | {};
 }
 
-export { getTopItems };
+export { getTopItems, getCurrentlyPlaying, getHistory };
